@@ -36,6 +36,7 @@ class Clock{
     fill(0);
     textSize(25);
     textAlign(CENTER);
+    if(hour() > 12) this.hour = getHour() - 12;
     text(getHour() + ":" + getMinute() + ":" + getSecond() + " " + amPm(), width/2, 20);
     if(hour() > 12){
       this.hour = getHour() - 12;
