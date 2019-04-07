@@ -1,8 +1,12 @@
+import java.util.Calendar;
+
 Clock c = new Clock();
 MonthlyCalendar m = new MonthlyCalendar();
 
 void setup() {
   size(640, 360, FX2D);
+  textAlign(CENTER);
+  
 }
 
 void draw() {
