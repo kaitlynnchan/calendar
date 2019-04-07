@@ -1,50 +1,50 @@
-class Clock{
+class Clock {
   private int second;
   private int minute;
   private int hour;
-  
-  Clock(){
+
+  Clock() {
     second = second();
     minute = minute();
     hour = hour();
   }
-  
-  public int getSecond(){
+
+  public int getSecond() {
     return this.second;
   }
-  
-  public int getMinute(){
+
+  public int getMinute() {
     return this.minute;
   }
-  
-  public int getHour(){
+
+  public int getHour() {
     return this.hour;
   }
-  
-  public String amPm(){
-    if(hour() < 12 || hour() == 24) return "AM";
+
+  public String amPm() {
+    if (hour() < 12 || hour() == 24) return "AM";
     return "PM";
   }
-  
-  public void getTime(){
+
+  public void getTime() {
     second = second();
     minute = minute();
-    hour = hour();  
+    hour = hour();
   }
-  
-  public void display(){
+
+  public void display() {
+    if (hour() > 12) this.hour = getHour() - 12;
     fill(0);
     textSize(25);
     textAlign(CENTER);
-    if(hour() > 12) this.hour = getHour() - 12;
-    text(getHour() + ":" + getMinute() + ":" + getSecond() + " " + amPm(), width/2, 20);
-    if(hour() > 12){
-      this.hour = getHour() - 12;
+    if (minute() < 10 && second() < 10) {
+      text(getHour() + ":0" + getMinute() + ":0" + getSecond() + " " + amPm(), width/2, 20);
+    } else if (minute() < 10) {
+      text(getHour() + ":0" + getMinute() + ":" + getSecond() + " " + amPm(), width/2, 20);
+    } else if (second() < 10) {
+      text(getHour() + ":" + getMinute() + ":0" + getSecond() + " " + amPm(), width/2, 20);
+    } else {
+      text(getHour() + ":" + getMinute() + ":" + getSecond() + " " + amPm(), width/2, 20);
     }
-    //add in the 0 before number
-    //if(minute() < 10) {
-    //  text( getHour() + ":" + "0" +getMinute() + ":" + getSecond() + " " + amPm(), width/2, 20);
-    //}
   }
-  
 }
