@@ -13,24 +13,17 @@ class MonthlyCalendar {
   }
 
   public int getDayofWeekInt() {
-    if (this.dayofWeek == 1) return 2;
-    if (this.dayofWeek == 2) return 3;
-    if (this.dayofWeek == 3) return 4;
-    if (this.dayofWeek == 4) return 5;
-    if (this.dayofWeek == 5) return 6;
-    if (this.dayofWeek == 6) return 7;
-    if (this.dayofWeek == 7) return 1;
-    return 0;
+    return this.dayofWeek;
   }
 
   public String getDayofWeek() {
-    if (this.dayofWeek == 1) return "Monday";
-    if (this.dayofWeek == 2) return "Tuesday";
-    if (this.dayofWeek == 3) return "Wednesday";
-    if (this.dayofWeek == 4) return "Thurday";
-    if (this.dayofWeek == 5) return "Friday";
-    if (this.dayofWeek == 6) return "Saturday";
-    if (this.dayofWeek == 7) return "Sunday";
+    if (this.dayofWeek == 2) return "Monday";
+    if (this.dayofWeek == 3) return "Tuesday";
+    if (this.dayofWeek == 4) return "Wednesday";
+    if (this.dayofWeek == 5) return "Thurday";
+    if (this.dayofWeek == 6) return "Friday";
+    if (this.dayofWeek == 7) return "Saturday";
+    if (this.dayofWeek == 1) return "Sunday";
     return "this is the end of the world";
   }
 
@@ -59,30 +52,10 @@ class MonthlyCalendar {
   }
 
   public void getDate() {
-    dayofWeek = Calendar.DAY_OF_WEEK;
+    dayofWeek = cal.get(Calendar.DAY_OF_WEEK);
     dayofMonth = day();
     month = month();
     year = year();
-  }
-  
-  public int daysofMonth(){
-    boolean leapYear = false;
-    if (this.month == 1) return 31;
-    if (this.month == 2){
-      if(leapYear) return 29;
-      return 28;
-    }
-    if (this.month == 3) return 31;
-    if (this.month == 4) return 30;
-    if (this.month == 5) return 31;
-    if (this.month == 6) return 30;
-    if (this.month == 7) return 31;
-    if (this.month == 8) return 31;
-    if (this.month == 9) return 30;
-    if (this.month == 10) return 31;
-    if (this.month == 11) return 30;
-    if (this.month == 12) return 31;
-    return 0;
   }
 
   public void display() {
@@ -116,15 +89,15 @@ class MonthlyCalendar {
 
     //----------------------------- Date --------------------------------//
     textAlign(CENTER);
-    text(getDayofWeek() + " " + getMonth() + " " + getDayofMonth() + ", " + getYear(), width/2, 68);
+    text(getDayofWeek() + " " + getMonth() + " " + getDayofMonth() + ", " + getYear(), width/2, 68);//getDayofWeek()
 
 
     textAlign(RIGHT);
-    text(getDayofMonth(), getDayofWeekInt()*(width/7) -5, (Calendar.WEEK_OF_MONTH*((height-100)/5)) - 35);
+    text(getDayofMonth(), getDayofWeekInt()*(width/7) -5, (cal.get(Calendar.WEEK_OF_MONTH)*((height-100)/5)) +70);
 
     int i = getDayofMonth();
     int t = getDayofWeekInt();
-    int n = 2;
+    int n = cal.get(Calendar.WEEK_OF_MONTH);
     while (n > 0 && i > 0) {
       while (t > 0 && i > 0) {
         textAlign(RIGHT);
@@ -138,9 +111,9 @@ class MonthlyCalendar {
     
     int j = getDayofMonth();
     int k = getDayofWeekInt();
-    int l = 2;
-    while (l <= 6 && j <= daysofMonth()) {
-      while (k <=7 && j <= daysofMonth()) {
+    int l = cal.get(Calendar.WEEK_OF_MONTH);
+    while (l <= 6 && j <= 30) {
+      while (k <=7 && j <= 30) {
         textAlign(RIGHT);
         text(j, k*(width/7) -5, (l*((height-100)/5))+70);
         j++;
