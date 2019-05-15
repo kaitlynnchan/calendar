@@ -33,10 +33,10 @@ class Clock {
   }
 
   public void display() {
-    if (hour() > 12) this.hour = getHour() - 12;
     fill(0);
     textSize(25);
     textAlign(CENTER);
+    if (hour() > 12) this.hour = getHour() - 12;
     if (minute() < 10 && second() < 10) {
       text(getHour() + ":0" + getMinute() + ":0" + getSecond() + " " + amPm(), width/2, 20);
     } else if (minute() < 10) {
